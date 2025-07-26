@@ -2,6 +2,8 @@
 
 This is a simple BMI-based gym routine planner. Users can input their weight and height, and the app calculates their BMI and generates a personalized gym plan for the week.
 
+🚀 Live Demo: [bmi-gym-planner.onrender.com](https://bmi-gym-planner.onrender.com)
+
 ### 🚀 Features
 
 - BMI Calculation (based on height & weight)
