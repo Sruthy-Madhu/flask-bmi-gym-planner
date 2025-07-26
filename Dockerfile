@@ -19,5 +19,8 @@ RUN pip install --no-cache-dir flask psycopg2-binary
 # Expose Flask port
 EXPOSE 5000
 
+#Expose Render Port
+EXPOSE 10000
+
 # Run the app
 CMD ["python", "app.py"]
