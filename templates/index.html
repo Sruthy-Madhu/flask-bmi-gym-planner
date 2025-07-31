@@ -47,6 +47,7 @@
         <div class="card-body">
           <h5 class="card-title">📊 Your BMI Result</h5>
           <p class="card-text" id="bmi-output"></p>
+	  <p class="card-text" id="category-output"></p>
           <h6 class="mt-3">🏋️ Weekly Gym Plan</h6>
           <ul id="plan-output" class="list-group list-group-flush"></ul>
         </div>
@@ -63,6 +64,7 @@
     const form = document.getElementById('bmi-form');
     const resultCard = document.getElementById('result');
     const bmiOutput = document.getElementById('bmi-output');
+    const category = document.getElementById('category-output');
     const planOutput = document.getElementById('plan-output');
 
     form.addEventListener('submit', async (e) => {
@@ -81,6 +83,7 @@
       if (response.ok) {
         const data = await response.json();
         bmiOutput.textContent = `Your BMI is ${data.bmi}`;
+	category.textContent = `Category: ${data.category}`;
         planOutput.innerHTML = '';
         data.plan.forEach((day) => {
           const li = document.createElement('li');

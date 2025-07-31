@@ -113,6 +113,6 @@ def generate_plan():
             "Sunday": "Rest"
         }
     plan = [f"{day}: {routine}" for day, routine in plan_dict.items()]
-    return jsonify({"bmi": bmi, "plan": plan})
+    return jsonify({"bmi": bmi,"category":category, "plan": plan})
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    app.run(host="0.0.0.0", port=10000)
