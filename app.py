@@ -62,8 +62,8 @@ def get_bmi_plan(weight, height_cm):
 def home():
     return render_template("index.html")
 
-@app.route("/get-plan", methods=["GET","POST"])
-def get_plan():
+@app.route("/generate-plan", methods=["GET","POST"])
+def generate_plan():
     data = request.get_json()
     weight = data.get("weight")
     height = data.get("height")
@@ -81,7 +81,7 @@ def get_plan():
     # Determine category and gym plan
     if bmi < 18.5:
         category = "Underweight"
-        plan = {
+        plan_dict = {
             "Monday": "Full-body strength training",
             "Tuesday": "Rest",
             "Wednesday": "Upper body workout",
@@ -92,7 +92,7 @@ def get_plan():
         }
     elif 18.5 <= bmi < 25:
         category = "Normal weight"
-        plan = {
+        plan_dict = {
             "Monday": "Strength training (push)",
             "Tuesday": "Cardio (HIIT)",
             "Wednesday": "Strength training (pull)",
@@ -103,7 +103,7 @@ def get_plan():
         }
     else:
         category = "Overweight"
-        plan = {
+        plan_dict = {
             "Monday": "Cardio (brisk walk/jog)",
             "Tuesday": "Strength training (upper)",
             "Wednesday": "Cardio (cycling/swim)",
@@ -112,11 +112,7 @@ def get_plan():
             "Saturday": "Cardio + core",
             "Sunday": "Rest"
         }
-
-    return jsonify({
-        "bmi": bmi,
-        "category": category,
-        "weekly_plan": plan
-    })
+    plan = [f"{day}: {routine}" for day, routine in plan_dict.items()]
+    return jsonify({"bmi": bmi, "plan": plan})
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=10000)
+    app.run(host="0.0.0.0", port=5000)
